@@ -62,12 +62,12 @@ export default function Footer() {
               </a>
             ))}
             <div className="flex gap-4 mt-4 pt-4 border-t border-cream/10">
-              <a
-                href="#"
+              <Link
+                href="/datenschutz"
                 className="font-sans text-cream/40 text-xs hover:text-cream/70 transition-colors"
               >
                 Datenschutzerklärung
-              </a>
+              </Link>
               <a
                 href="#"
                 className="font-sans text-cream/40 text-xs hover:text-cream/70 transition-colors"
