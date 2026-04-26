@@ -41,7 +41,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
         <Link href="#home" onClick={(e) => handleNavClick(e, "#home")}>
           <Image
-            src="/images/logo-light.png"
+            src="/images/logo-icon-dark.png"
             alt="Merce.Design Interior"
             width={140}
             height={50}
