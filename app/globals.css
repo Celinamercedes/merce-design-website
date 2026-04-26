@@ -40,6 +40,16 @@ body {
   }
 }
 
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @layer components {
   .btn-outline {
     @apply border border-current px-8 py-3 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-white hover:text-navy;
