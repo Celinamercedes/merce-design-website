@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cormorant Garamond — lokal via @fontsource */
+@import "@fontsource/cormorant-garamond/300.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/300-italic.css";
+@import "@fontsource/cormorant-garamond/400-italic.css";
+@import "@fontsource/cormorant-garamond/600-italic.css";
+
+/* Jost — lokal via @fontsource */
+@import "@fontsource/jost/300.css";
+@import "@fontsource/jost/400.css";
+@import "@fontsource/jost/500.css";
+
 :root {
   --cream: #EEECE7;
   --warm-gray: #D0CCC7;
@@ -18,12 +31,12 @@ html {
 body {
   background-color: var(--cream);
   color: var(--navy);
-  font-family: var(--font-jost), system-ui, sans-serif;
+  font-family: "Jost", system-ui, sans-serif;
 }
 
 @layer base {
   h1, h2, h3, h4 {
-    font-family: var(--font-cormorant), Georgia, serif;
+    font-family: "Cormorant Garamond", Georgia, serif;
   }
 }
 

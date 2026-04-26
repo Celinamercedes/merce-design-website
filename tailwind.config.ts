@@ -15,8 +15,8 @@ const config: Config = {
         burgundy: "#58181F",
       },
       fontFamily: {
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
-        sans: ["var(--font-jost)", "system-ui", "sans-serif"],
+        serif: ["Cormorant Garamond", "Georgia", "serif"],
+        sans: ["Jost", "system-ui", "sans-serif"],
       },
     },
   },
