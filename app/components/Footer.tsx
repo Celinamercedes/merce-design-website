@@ -42,11 +42,11 @@ export default function Footer() {
           {/* Logo centered */}
           <div className="flex justify-center">
             <Image
-              src="/images/logo-light.png"
+              src="/images/logo-dark.png"
               alt="Merce.Design Interior"
-              width={120}
-              height={48}
-              className="h-12 w-auto object-contain opacity-80"
+              width={360}
+              height={144}
+              className="h-36 w-auto object-contain"
             />
           </div>
 
