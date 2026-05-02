@@ -75,10 +75,10 @@ function ImageModal({ item, onClose }: { item: ImageItem; onClose: () => void })
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.92, opacity: 0 }}
         transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-        className="relative max-w-4xl w-full max-h-[85vh] bg-navy rounded-sm overflow-hidden shadow-2xl"
+        className="relative max-w-4xl w-full max-h-[85vh] bg-navy rounded-sm shadow-2xl flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative w-full" style={{ aspectRatio: "4/3" }}>
+        <div className="relative w-full flex-1 min-h-0 overflow-hidden rounded-t-sm">
           <Image
             src={item.url}
             alt={item.title}
@@ -87,7 +87,7 @@ function ImageModal({ item, onClose }: { item: ImageItem; onClose: () => void })
             sizes="(max-width: 1200px) 100vw, 900px"
           />
         </div>
-        <div className="p-5 bg-navy">
+        <div className="flex-shrink-0 px-6 py-4 bg-navy">
           <h3 className="font-serif text-cream text-2xl font-light">{item.title}</h3>
           {item.desc && (
             <p className="font-sans text-cream/60 text-sm tracking-wide mt-1">{item.desc}</p>
