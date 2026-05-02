@@ -2,7 +2,7 @@
 
 import { useRef, useCallback, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/app/lib/utils";
 
@@ -55,12 +55,28 @@ function BentoItem({ item, onClick }: { item: ImageItem; onClick: (item: ImageIt
   );
 }
 
-function ImageModal({ item, onClose }: { item: ImageItem; onClose: () => void }) {
+interface ImageModalProps {
+  items: ImageItem[];
+  index: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}
+
+function ImageModal({ items, index, onClose, onPrev, onNext }: ImageModalProps) {
+  const item = items[index];
+  const hasPrev = index > 0;
+  const hasNext = index < items.length - 1;
+
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && hasPrev) onPrev();
+      if (e.key === "ArrowRight" && hasNext) onNext();
+    };
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, [onClose]);
+  }, [onClose, onPrev, onNext, hasPrev, hasNext]);
 
   return (
     <motion.div
@@ -78,6 +94,7 @@ function ImageModal({ item, onClose }: { item: ImageItem; onClose: () => void })
         className="relative max-w-4xl w-full bg-navy rounded-sm shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Image */}
         <div className="relative w-full" style={{ height: "min(62vh, 560px)" }}>
           <Image
             src={item.url}
@@ -86,19 +103,50 @@ function ImageModal({ item, onClose }: { item: ImageItem; onClose: () => void })
             className="object-cover"
             sizes="(max-width: 1200px) 100vw, 900px"
           />
-        </div>
-        <div className="px-6 py-4 bg-navy">
-          <h3 className="font-serif text-cream text-2xl font-light">{item.title}</h3>
-          {item.desc && (
-            <p className="font-sans text-cream/60 text-sm tracking-wide mt-1">{item.desc}</p>
+
+          {/* Prev arrow */}
+          {hasPrev && (
+            <button
+              onClick={(e) => { e.stopPropagation(); onPrev(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 border border-cream/40 text-cream/70 hover:border-cream hover:text-cream transition-all duration-200 p-2.5 rounded-sm bg-navy/30 hover:bg-navy/60"
+              aria-label="Vorheriges Bild"
+            >
+              <ChevronLeft size={22} strokeWidth={1.5} />
+            </button>
+          )}
+
+          {/* Next arrow */}
+          {hasNext && (
+            <button
+              onClick={(e) => { e.stopPropagation(); onNext(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 border border-cream/40 text-cream/70 hover:border-cream hover:text-cream transition-all duration-200 p-2.5 rounded-sm bg-navy/30 hover:bg-navy/60"
+              aria-label="Nächstes Bild"
+            >
+              <ChevronRight size={22} strokeWidth={1.5} />
+            </button>
           )}
         </div>
+
+        {/* Title + counter */}
+        <div className="px-6 py-4 bg-navy flex items-baseline justify-between">
+          <div>
+            <h3 className="font-serif text-cream text-2xl font-light">{item.title}</h3>
+            {item.desc && (
+              <p className="font-sans text-cream/60 text-sm tracking-wide mt-1">{item.desc}</p>
+            )}
+          </div>
+          <span className="font-sans text-cream/30 text-xs tracking-widest ml-6 shrink-0">
+            {index + 1} / {items.length}
+          </span>
+        </div>
+
+        {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 bg-navy/80 text-cream rounded-full p-2 hover:bg-navy transition-colors"
+          className="absolute top-4 right-4 border border-cream/40 text-cream/70 hover:border-cream hover:text-cream transition-all duration-200 rounded-sm p-1.5 bg-navy/30 hover:bg-navy/60"
           aria-label="Schließen"
         >
-          <X size={20} />
+          <X size={18} strokeWidth={1.5} />
         </button>
       </motion.div>
     </motion.div>
@@ -106,7 +154,7 @@ function ImageModal({ item, onClose }: { item: ImageItem; onClose: () => void })
 }
 
 export function BentoGallery({ items, title, description }: BentoGalleryProps) {
-  const [selected, setSelected] = useState<ImageItem | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -133,8 +181,11 @@ export function BentoGallery({ items, title, description }: BentoGalleryProps) {
   }, []);
 
   const handleItemClick = useCallback((item: ImageItem) => {
-    if (!isDragging.current) setSelected(item);
-  }, []);
+    if (!isDragging.current) {
+      const idx = items.findIndex((i) => i.id === item.id);
+      setSelectedIndex(idx);
+    }
+  }, [items]);
 
   return (
     <section id="portfolio" className="bg-cream py-20 overflow-hidden">
@@ -166,8 +217,14 @@ export function BentoGallery({ items, title, description }: BentoGalleryProps) {
       </div>
 
       <AnimatePresence>
-        {selected && (
-          <ImageModal item={selected} onClose={() => setSelected(null)} />
+        {selectedIndex !== null && (
+          <ImageModal
+            items={items}
+            index={selectedIndex}
+            onClose={() => setSelectedIndex(null)}
+            onPrev={() => setSelectedIndex((i) => (i !== null ? Math.max(0, i - 1) : 0))}
+            onNext={() => setSelectedIndex((i) => (i !== null ? Math.min(items.length - 1, i + 1) : 0))}
+          />
         )}
       </AnimatePresence>
     </section>
