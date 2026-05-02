@@ -38,14 +38,14 @@ export default function Navigation() {
         scrolled ? "shadow-md" : ""
       } bg-navy`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
         <Link href="#home" onClick={(e) => handleNavClick(e, "#home")}>
           <Image
             src="/images/logo-icon-dark.png"
             alt="Merce.Design Interior"
-            width={280}
-            height={100}
-            className="h-20 w-auto object-contain"
+            width={140}
+            height={50}
+            className="h-10 w-auto object-contain"
           />
         </Link>
 
