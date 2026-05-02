@@ -42,7 +42,7 @@ export default function ProblemSection() {
         >
           <div className="relative h-64 lg:h-full min-h-[300px]">
             <Image
-              src="/images/fuellbild1.png"
+              src="/images/fuellbild1.jpg"
               alt="Materialproben und Designkonzept"
               fill
               className="object-cover"
@@ -97,7 +97,7 @@ export default function ProblemSection() {
           <div className="relative w-full h-72 lg:h-96">
             <div className="absolute top-4 right-4 md:right-8 w-48 md:w-56 h-64 md:h-72 shadow-xl rotate-3 overflow-hidden rounded-sm">
               <Image
-                src="/images/moodboard.png"
+                src="/images/moodboard.jpg"
                 alt="Moodboard"
                 fill
                 className="object-cover"
@@ -113,7 +113,7 @@ export default function ProblemSection() {
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 md:w-48 h-52 md:h-60 shadow-xl rotate-1 overflow-hidden rounded-sm">
               <Image
-                src="/images/moodboard2.png"
+                src="/images/moodboard2.jpg"
                 alt="Designkonzept"
                 fill
                 className="object-cover"
