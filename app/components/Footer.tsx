@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaInstagram, FaTiktok } from "react-icons/fa6";
 
 const navLinks = [
   { label: "Portfolio", href: "#portfolio" },
@@ -27,14 +28,14 @@ export default function Footer() {
               href="#"
               className="flex items-center gap-3 font-sans text-cream/60 text-xs tracking-wide hover:text-cream transition-colors"
             >
-              <span className="text-steel">◎</span>
+              <FaInstagram className="text-steel text-base flex-shrink-0" />
               <span>Instagram</span>
             </a>
             <a
               href="#"
               className="flex items-center gap-3 font-sans text-cream/60 text-xs tracking-wide hover:text-cream transition-colors"
             >
-              <span className="text-steel">♪</span>
+              <FaTiktok className="text-steel text-base flex-shrink-0" />
               <span>TikTok</span>
             </a>
           </div>
