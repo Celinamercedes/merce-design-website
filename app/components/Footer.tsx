@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaTiktok } from "react-icons/fa6";
+import { FaInstagram, FaTiktok, FaEnvelope } from "react-icons/fa6";
 
 const navLinks = [
   { label: "Portfolio", href: "#portfolio" },
@@ -21,7 +21,7 @@ export default function Footer() {
               href="mailto:celina.mercedes@web.de"
               className="flex items-center gap-3 font-sans text-cream/60 text-xs tracking-wide hover:text-cream transition-colors"
             >
-              <span className="text-steel">✉</span>
+              <FaEnvelope className="text-steel text-base flex-shrink-0" />
               <span>celina.mercedes@web.de</span>
             </a>
             <a
