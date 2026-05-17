@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -118,6 +119,13 @@ export default function ContactSection() {
               >
                 {loading ? "Wird gesendet…" : "Absenden"}
               </button>
+              <p className="font-sans text-cream/40 text-xs text-center leading-relaxed">
+                Mit dem Absenden stimmst du der Verarbeitung deiner Daten gem&auml;&szlig; unserer{" "}
+                <Link href="/datenschutz" className="underline underline-offset-2 hover:text-cream/70 transition-colors">
+                  Datenschutzerkl&auml;rung
+                </Link>{" "}
+                zu.
+              </p>
             </form>
           )}
         </motion.div>
