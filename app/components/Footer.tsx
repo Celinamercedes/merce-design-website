@@ -18,11 +18,11 @@ export default function Footer() {
           {/* Social links */}
           <div className="space-y-3">
             <a
-              href="mailto:celina.mercedes@web.de"
+              href="mailto:celina@merce-design.de"
               className="flex items-center gap-3 font-sans text-cream/60 text-xs tracking-wide hover:text-cream transition-colors"
             >
               <FaEnvelope className="text-steel text-base flex-shrink-0" />
-              <span>celina.mercedes@web.de</span>
+              <span>celina@merce-design.de</span>
             </a>
             <a
               href="#"
