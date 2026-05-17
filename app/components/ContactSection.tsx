@@ -7,12 +7,31 @@ import Image from "next/image";
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError(false);
+    try {
+      const res = await fetch("https://formspree.io/f/xdajnjwa", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSent(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -87,11 +106,17 @@ export default function ContactSection() {
                   placeholder="Erzähl mir von deinem Projekt…"
                 />
               </div>
+              {error && (
+                <p className="font-sans text-cream/70 text-xs text-center">
+                  Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib mir direkt an celina@merce-design.de
+                </p>
+              )}
               <button
                 type="submit"
-                className="w-full bg-cream text-navy font-sans text-xs tracking-[0.2em] uppercase py-4 hover:bg-warm-gray transition-colors duration-300"
+                disabled={loading}
+                className="w-full bg-cream text-navy font-sans text-xs tracking-[0.2em] uppercase py-4 hover:bg-warm-gray transition-colors duration-300 disabled:opacity-50"
               >
-                Absenden
+                {loading ? "Wird gesendet…" : "Absenden"}
               </button>
             </form>
           )}
