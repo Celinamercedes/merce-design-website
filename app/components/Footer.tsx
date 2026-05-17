@@ -25,14 +25,18 @@ export default function Footer() {
               <span>celina@merce-design.de</span>
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/merce.design_interior?igsh=OWdmOHI0dmtoNnZ4&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 font-sans text-cream/60 text-xs tracking-wide hover:text-cream transition-colors"
             >
               <FaInstagram className="text-steel text-base flex-shrink-0" />
               <span>Instagram</span>
             </a>
             <a
-              href="#"
+              href="https://www.tiktok.com/@merce.design_interior?_r=1&_t=ZG-96RDwwYcID3"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 font-sans text-cream/60 text-xs tracking-wide hover:text-cream transition-colors"
             >
               <FaTiktok className="text-steel text-base flex-shrink-0" />
