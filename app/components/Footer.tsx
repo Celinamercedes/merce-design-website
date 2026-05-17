@@ -68,12 +68,12 @@ export default function Footer() {
               >
                 Datenschutzerklärung
               </Link>
-              <a
-                href="#"
+              <Link
+                href="/impressum"
                 className="font-sans text-cream/40 text-xs hover:text-cream/70 transition-colors"
               >
                 Impressum
-              </a>
+              </Link>
             </div>
           </div>
         </div>
